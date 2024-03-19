@@ -2,8 +2,18 @@ import React, { useState } from "react";
 import { Box, Heading, Text, Textarea, Button, VStack, useToast } from "@chakra-ui/react";
 
 const removeIdenticalLetters = (str) => {
-  const regex = /(.)\1{3}/g;
-  return str.replace(regex, (match) => match.slice(0, 3));
+  const arr = str.split("");
+  let i = 0;
+
+  while (i < arr.length - 3) {
+    if (arr[i] === arr[i + 1] && arr[i] === arr[i + 2] && arr[i] === arr[i + 3] && arr[i].toLowerCase() === arr[i]) {
+      arr.splice(i, 1);
+    } else {
+      i++;
+    }
+  }
+
+  return arr.join("");
 };
 
 const Index = () => {
